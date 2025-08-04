@@ -26,7 +26,7 @@ Vector::Vector(const Vector &other) : m_size{other.m_size},
 Vector &Vector::operator=(const Vector &other) {
     if (this == &other) return *this;
 
-    if (m_capacity < other.m_capacity) {
+    if (m_size < other.m_size) {
         Vector tmp{other};
         swap(tmp);
     } else {
