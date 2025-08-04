@@ -102,6 +102,22 @@ void Vector::swap(Vector &other) noexcept {
     std::swap(m_data, other.m_data);
 }
 
+[[nodiscard]] int *Vector::begin() {
+    return m_data;
+}
+
+[[nodiscard]] const int *Vector::begin() const {
+    return m_data;
+}
+
+[[nodiscard]] int *Vector::end() {
+    return m_data + m_size;
+}
+
+[[nodiscard]] const int *Vector::end() const {
+    return m_data + m_size;
+}
+
 void swap(Vector &a, Vector &b) noexcept {
     a.swap(b);
 }

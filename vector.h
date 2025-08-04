@@ -41,6 +41,14 @@ public:
     [[nodiscard]] std::size_t capacity() const;
 
     void swap(Vector &other) noexcept;
+
+    [[nodiscard]] int *begin();
+
+    [[nodiscard]] const int *begin() const;
+
+    [[nodiscard]] int *end();
+
+    [[nodiscard]] const int *end() const;
 };
 
 void swap(Vector &a, Vector &b) noexcept;
