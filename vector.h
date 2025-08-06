@@ -51,5 +51,17 @@ public:
     [[nodiscard]] const int *end() const;
 };
 
+[[nodiscard]] bool operator==(const Vector &lhs, const Vector &rhs);
+
+[[nodiscard]] bool operator!=(const Vector &lhs, const Vector &rhs);
+
+[[nodiscard]] bool operator>=(const Vector &lhs, const Vector &rhs);
+
+[[nodiscard]] bool operator>(const Vector &lhs, const Vector &rhs);
+
+[[nodiscard]] bool operator<=(const Vector &lhs, const Vector &rhs);
+
+[[nodiscard]] bool operator<(const Vector &lhs, const Vector &rhs);
+
 void swap(Vector &a, Vector &b) noexcept;
 #endif //VECTOR_H

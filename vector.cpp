@@ -118,6 +118,64 @@ void Vector::swap(Vector &other) noexcept {
     return m_data + m_size;
 }
 
+[[nodiscard]] bool operator==(const Vector &lhs, const Vector &rhs) {
+    if (lhs.size() != rhs.size()) return false;
+
+    for (size_t i = 0; i < lhs.size(); ++i) {
+        if (lhs[i] != rhs[i]) return false;
+    }
+
+    return true;
+}
+
+[[nodiscard]] bool operator!=(const Vector &lhs, const Vector &rhs) {
+    return !(lhs == rhs);
+}
+
+[[nodiscard]] bool operator>=(const Vector &lhs, const Vector &rhs) {
+    const size_t size = std::min(lhs.size(), rhs.size());
+
+    for (size_t i = 0; i < size; ++i) {
+        if (lhs[i] > rhs[i]) return true;
+        if (lhs[i] < rhs[i]) return false;
+    }
+
+    return lhs.size() >= rhs.size();
+}
+
+[[nodiscard]] bool operator<=(const Vector &lhs, const Vector &rhs) {
+    const size_t size = std::min(lhs.size(), rhs.size());
+
+    for (size_t i = 0; i < size; ++i) {
+        if (lhs[i] > rhs[i]) return false;
+        if (lhs[i] < rhs[i]) return true;
+    }
+
+    return lhs.size() <= rhs.size();
+}
+
+[[nodiscard]] bool operator>(const Vector &lhs, const Vector &rhs) {
+    const size_t size = std::min(lhs.size(), rhs.size());
+
+    for (size_t i = 0; i < size; ++i) {
+        if (lhs[i] < rhs[i]) return false;
+        if (lhs[i] > rhs[i]) return true;
+    }
+
+    return lhs.size() > rhs.size();
+}
+
+[[nodiscard]] bool operator<(const Vector &lhs, const Vector &rhs) {
+    const size_t size = std::min(lhs.size(), rhs.size());
+
+    for (size_t i = 0; i < size; ++i) {
+        if (lhs[i] > rhs[i]) return false;
+        if (lhs[i] < rhs[i]) return true;
+    }
+
+    return lhs.size() < rhs.size();
+}
+
 void swap(Vector &a, Vector &b) noexcept {
     a.swap(b);
 }
