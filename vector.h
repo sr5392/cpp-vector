@@ -32,6 +32,8 @@ public:
 
     void push_back(int i);
 
+    void shrink_to_fit();
+
     int &operator[](std::size_t i);
 
     const int &operator[](std::size_t i) const;

@@ -80,6 +80,16 @@ void Vector::push_back(const int i) {
     ++m_size;
 }
 
+void Vector::shrink_to_fit() {
+    if (m_size == m_capacity) return;
+
+    int *data = new int[m_size];
+    std::move(m_data, m_data + m_size, data);
+    delete[] m_data;
+    m_data = data;
+    m_capacity = m_size;
+}
+
 int &Vector::operator[](const std::size_t i) {
     return m_data[i];
 }
