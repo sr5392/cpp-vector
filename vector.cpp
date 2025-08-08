@@ -58,7 +58,7 @@ void Vector::reserve(const std::size_t capacity) {
     if (capacity <= m_capacity) return;
 
     int *data = new int[capacity];
-    std::copy(m_data, m_data + m_size, data);
+    std::move(m_data, m_data + m_size, data);
     delete[] m_data;
     m_data = data;
     m_capacity = capacity;
