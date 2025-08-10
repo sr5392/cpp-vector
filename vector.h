@@ -4,15 +4,12 @@
 #include <initializer_list>
 
 class Vector {
-private:
-    std::size_t m_size;
-    std::size_t m_capacity;
-    int *m_data;
-
 public:
+    using size_type = std::size_t;
+
     Vector();
 
-    explicit Vector(std::size_t size);
+    explicit Vector(size_type size);
 
     Vector(std::initializer_list<int> init);
 
@@ -26,21 +23,21 @@ public:
 
     ~Vector();
 
-    void reserve(std::size_t capacity);
+    void reserve(size_type capacity);
 
-    void resize(std::size_t size);
+    void resize(size_type size);
 
     void push_back(int i);
 
     void shrink_to_fit();
 
-    int &operator[](std::size_t i);
+    int &operator[](size_type i);
 
-    const int &operator[](std::size_t i) const;
+    const int &operator[](size_type i) const;
 
-    [[nodiscard]] std::size_t size() const;
+    [[nodiscard]] size_type size() const;
 
-    [[nodiscard]] std::size_t capacity() const;
+    [[nodiscard]] size_type capacity() const;
 
     void swap(Vector &other) noexcept;
 
@@ -51,6 +48,11 @@ public:
     [[nodiscard]] int *end();
 
     [[nodiscard]] const int *end() const;
+
+private:
+    size_type m_size;
+    size_type m_capacity;
+    int *m_data;
 };
 
 [[nodiscard]] bool operator==(const Vector &lhs, const Vector &rhs);

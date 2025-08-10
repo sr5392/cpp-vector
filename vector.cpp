@@ -5,8 +5,8 @@
 Vector::Vector() : m_size{0}, m_capacity{m_size}, m_data{nullptr} {
 }
 
-Vector::Vector(const std::size_t size) : m_size{size}, m_capacity{m_size}, m_data{new int[m_capacity]} {
-    for (std::size_t i = 0; i < m_size; ++i) {
+Vector::Vector(const Vector::size_type size) : m_size{size}, m_capacity{m_size}, m_data{new int[m_capacity]} {
+    for (Vector::size_type i = 0; i < m_size; ++i) {
         m_data[i] = 0;
     }
 }
@@ -54,7 +54,7 @@ Vector::~Vector() {
     delete[] m_data;
 }
 
-void Vector::reserve(const std::size_t capacity) {
+void Vector::reserve(const Vector::size_type capacity) {
     if (capacity <= m_capacity) return;
 
     int *data = new int[capacity];
@@ -64,9 +64,9 @@ void Vector::reserve(const std::size_t capacity) {
     m_capacity = capacity;
 }
 
-void Vector::resize(const std::size_t size) {
+void Vector::resize(const Vector::size_type size) {
     reserve(size);
-    for (std::size_t i = m_size; i < size; ++i) {
+    for (auto i = m_size; i < size; ++i) {
         m_data[i] = 0;
     }
     m_size = size;
@@ -90,19 +90,19 @@ void Vector::shrink_to_fit() {
     m_capacity = m_size;
 }
 
-int &Vector::operator[](const std::size_t i) {
+int &Vector::operator[](const Vector::size_type i) {
     return m_data[i];
 }
 
-const int &Vector::operator[](const std::size_t i) const {
+const int &Vector::operator[](const Vector::size_type i) const {
     return m_data[i];
 }
 
-[[nodiscard]] std::size_t Vector::size() const {
+[[nodiscard]] Vector::size_type Vector::size() const {
     return m_size;
 }
 
-[[nodiscard]] std::size_t Vector::capacity() const {
+[[nodiscard]] Vector::size_type Vector::capacity() const {
     return m_capacity;
 }
 
@@ -131,7 +131,7 @@ void Vector::swap(Vector &other) noexcept {
 [[nodiscard]] bool operator==(const Vector &lhs, const Vector &rhs) {
     if (lhs.size() != rhs.size()) return false;
 
-    for (size_t i = 0; i < lhs.size(); ++i) {
+    for (Vector::size_type i = 0; i < lhs.size(); ++i) {
         if (lhs[i] != rhs[i]) return false;
     }
 
@@ -143,9 +143,9 @@ void Vector::swap(Vector &other) noexcept {
 }
 
 [[nodiscard]] bool operator>=(const Vector &lhs, const Vector &rhs) {
-    const size_t size = std::min(lhs.size(), rhs.size());
+    const Vector::size_type size = std::min(lhs.size(), rhs.size());
 
-    for (size_t i = 0; i < size; ++i) {
+    for (Vector::size_type i = 0; i < size; ++i) {
         if (lhs[i] > rhs[i]) return true;
         if (lhs[i] < rhs[i]) return false;
     }
@@ -154,9 +154,9 @@ void Vector::swap(Vector &other) noexcept {
 }
 
 [[nodiscard]] bool operator<=(const Vector &lhs, const Vector &rhs) {
-    const size_t size = std::min(lhs.size(), rhs.size());
+    const Vector::size_type size = std::min(lhs.size(), rhs.size());
 
-    for (size_t i = 0; i < size; ++i) {
+    for (Vector::size_type i = 0; i < size; ++i) {
         if (lhs[i] > rhs[i]) return false;
         if (lhs[i] < rhs[i]) return true;
     }
@@ -165,9 +165,9 @@ void Vector::swap(Vector &other) noexcept {
 }
 
 [[nodiscard]] bool operator>(const Vector &lhs, const Vector &rhs) {
-    const size_t size = std::min(lhs.size(), rhs.size());
+    const Vector::size_type size = std::min(lhs.size(), rhs.size());
 
-    for (size_t i = 0; i < size; ++i) {
+    for (Vector::size_type i = 0; i < size; ++i) {
         if (lhs[i] < rhs[i]) return false;
         if (lhs[i] > rhs[i]) return true;
     }
@@ -176,9 +176,9 @@ void Vector::swap(Vector &other) noexcept {
 }
 
 [[nodiscard]] bool operator<(const Vector &lhs, const Vector &rhs) {
-    const size_t size = std::min(lhs.size(), rhs.size());
+    const Vector::size_type size = std::min(lhs.size(), rhs.size());
 
-    for (size_t i = 0; i < size; ++i) {
+    for (Vector::size_type i = 0; i < size; ++i) {
         if (lhs[i] > rhs[i]) return false;
         if (lhs[i] < rhs[i]) return true;
     }
